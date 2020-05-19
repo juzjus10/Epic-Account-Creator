@@ -33,7 +33,7 @@ function register(){
   try{
     driver = new Builder().forBrowser('chrome').build();
     await driver.get('https://www.epicgames.com/id/register');
-    await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
+    await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 150000);
     await   driver.findElement(By.name('name')).sendKeys(credentials.name);
     await   driver.findElement(By.name('lastName')).sendKeys(credentials.lastName);
     await   driver.findElement(By.name('displayName')).sendKeys(credentials.username + credentials.usernamectr);
@@ -41,7 +41,7 @@ function register(){
     await   driver.findElement(By.name('password')).sendKeys(credentials.password);
     await   driver.findElement(By.name('termsOfService')).click();
     await   driver.sleep(5000);
-    var butones =  await driver.wait(until.elementLocated(By.id('btn-submit')), 10000);
+    var butones =  await driver.wait(until.elementLocated(By.id('btn-submit')), 150000);
     await  butones.click();
 
 
