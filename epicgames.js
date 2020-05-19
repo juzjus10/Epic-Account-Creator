@@ -1,7 +1,6 @@
 const {Builder, By, Key, until} = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const MailosaurClient = require('mailosaur');
-const request = require('request');
 const cheerio = require('cheerio')
 const fs = require('fs');
 
