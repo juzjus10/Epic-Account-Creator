@@ -153,14 +153,14 @@ function verify2FA (){
       await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 20000);
 
       var account = email + ":" + credentials.password + '\n';
-      fs.writeFileSync("accounts.txt", oldacc + account)
+      await fs.writeFileSync("accounts.txt", oldacc + account)
 
       return await twoFAcode;
     }
     catch (e){
       console.log("error happened");
       var account = email + ":" + credentials.password + "(incomplete)\n";
-      fs.writeFileSync("accounts.txt", oldacc + account)
+      await fs.writeFileSync("accounts.txt", oldacc + account)
     }
     finally
     {
