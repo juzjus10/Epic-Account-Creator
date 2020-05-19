@@ -10,8 +10,8 @@ var twoFAcode = '';
 var twofaid = '';
 let driver;
 var email;
-var account = '';
-var oldacc = (fs.readFileSync("accounts.txt").toString())
+var account;
+var oldacc;
 var contents = fs.readFileSync("credentials.json").toString()
 var credentials = JSON.parse(contents)
 
@@ -23,7 +23,7 @@ register();
 
 function register(){
 
-
+  oldacc = fs.readFileSync("accounts.txt").toString();
   email = credentials.username + credentials.usernamectr + credentials.email;
 
 
@@ -105,7 +105,7 @@ console.log("Getting Email Verification Code ....");
     const $ = cheerio.load(message.html.body)
     verificationcode = $('body > table > tbody > tr > td > center > table:nth-child(2) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > div').text().trim();
     await console.log("Verification Code: " + verificationcode);
-    await driver.wait(until.elementLocated(By.name('code')), 20000);
+    await driver.wait(until.elementLocated(By.name('code')), 150000);
     await driver.findElement(By.name('code')).sendKeys(verificationcode);
     await driver.findElement(By.id('continue')).click();
     return await verificationcode;
@@ -138,30 +138,30 @@ function verify2FA (){
       await console.log(twoFAcode);
       await driver.findElement(By.name('challengeEmailCode')).sendKeys(twoFAcode);
       await driver.findElement(By.className('proceed-btn')).click();
-      var donebtn =  await driver.wait(until.elementLocated(By.className('done-btn')), 10000);
+      var donebtn =  await driver.wait(until.elementLocated(By.className('done-btn')), 150000);
       await donebtn.click();
 
       await driver.get('https://www.epicgames.com/store/en-US/product/grand-theft-auto-v/home');
-      await driver.wait(until.titleIs('Grand Theft Auto V - Grand Theft Auto V: Premium Edition'), 50000);
-      await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 20000);
+      await driver.wait(until.titleIs('Grand Theft Auto V - Grand Theft Auto V: Premium Edition'), 150000);
+      await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
       await driver.findElement(By.className('Button-dark_c0429b3d')).click();
 
       var getButton = await driver.findElement(By.className('PurchaseButton-button_d3bea90e'));
       await driver.executeScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center'})", getButton);
       getButton.click();
-      await driver.wait(until.elementLocated(By.className('btn-primary')), 20000);
+      await driver.wait(until.elementLocated(By.className('btn-primary')), 150000);
       await driver.findElement(By.className('btn-primary')).click();
-      await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 20000);
+      await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
 
       account = email + ":" + credentials.password + '\n';
-      await fs.writeFileSync("accounts.txt", oldacc + account)
+      fs.writeFileSync("accounts.txt", oldacc + account)
 
       return await twoFAcode;
     }
     catch (e){
-      console.log("error happened");
+      console.log(e);
       account = email + ":" + credentials.password + "(incomplete)\n";
-      await fs.writeFileSync("accounts.txt", oldacc + account)
+      fs.writeFileSync("accounts.txt", oldacc + account)
     }
     finally
     {
