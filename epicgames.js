@@ -9,7 +9,8 @@ var verificationcode = '';
 var twoFAcode = '';
 var twofaid = '';
 let driver;
-var email
+var email;
+var account = '';
 var oldacc = (fs.readFileSync("accounts.txt").toString())
 var contents = fs.readFileSync("credentials.json").toString()
 var credentials = JSON.parse(contents)
@@ -104,7 +105,7 @@ console.log("Getting Email Verification Code ....");
     const $ = cheerio.load(message.html.body)
     verificationcode = $('body > table > tbody > tr > td > center > table:nth-child(2) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > div').text().trim();
     await console.log("Verification Code: " + verificationcode);
-    await   driver.wait(until.elementLocated(By.name('code')), 20000);
+    await driver.wait(until.elementLocated(By.name('code')), 20000);
     await driver.findElement(By.name('code')).sendKeys(verificationcode);
     await driver.findElement(By.id('continue')).click();
     return await verificationcode;
@@ -152,14 +153,14 @@ function verify2FA (){
       await driver.findElement(By.className('btn-primary')).click();
       await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 20000);
 
-      var account = email + ":" + credentials.password + '\n';
+      account = email + ":" + credentials.password + '\n';
       await fs.writeFileSync("accounts.txt", oldacc + account)
 
       return await twoFAcode;
     }
     catch (e){
       console.log("error happened");
-      var account = email + ":" + credentials.password + "(incomplete)\n";
+      account = email + ":" + credentials.password + "(incomplete)\n";
       await fs.writeFileSync("accounts.txt", oldacc + account)
     }
     finally
