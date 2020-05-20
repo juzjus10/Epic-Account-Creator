@@ -34,6 +34,9 @@ function register(){
     driver = new Builder().forBrowser('chrome').build();
 	var date = new Date(Date.now())
     await driver.get('https://www.epicgames.com/id/register');
+	await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
+    var  butones1 = await  driver.findElement(By.id('login-with-epic'));
+    await  butones1.click();
     await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
     await   driver.findElement(By.name('name')).sendKeys(credentials.name);
     await   driver.findElement(By.name('lastName')).sendKeys(credentials.lastName);
@@ -165,13 +168,19 @@ function verify2FA (){
       account = email + ":" + credentials.password + "(incomplete)\n";
       fs.writeFileSync("accounts.txt", oldacc + account)
     }
-    finally
+	    finally
     {
+	await driver.get('https://www.epicgames.com/account/password');
+	await driver.wait(until.titleIs('Change Your Password'), 150000);
+	await driver.sleep(3000)
+	await driver.executeScript('var tutu = document.getElementsByClassName("email-auth"); tutu[0].click();')
+	await driver.wait(until.elementLocated(By.className('common-disable-container')), 150000);
+	await driver.executeScript('var toto = document.getElementsByClassName("proceed-btn"); toto[0].click();')
+	await driver.sleep(1000);
       await driver.manage().deleteAllCookies()
       await driver.close();
       await register();
     }
-
 
       })();
 }
