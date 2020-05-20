@@ -33,15 +33,15 @@ function register(){
   try{
     driver = new Builder().forBrowser('chrome').build();
     await driver.get('https://www.epicgames.com/id/register');
-    await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 150000);
+    await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
     await   driver.findElement(By.name('name')).sendKeys(credentials.name);
     await   driver.findElement(By.name('lastName')).sendKeys(credentials.lastName);
     await   driver.findElement(By.name('displayName')).sendKeys(credentials.username + credentials.usernamectr);
     await   driver.findElement(By.name('email')).sendKeys(email);
     await   driver.findElement(By.name('password')).sendKeys(credentials.password);
     await   driver.findElement(By.name('termsOfService')).click();
-    await   driver.sleep(5000);
-    var butones =  await driver.wait(until.elementLocated(By.id('btn-submit')), 150000);
+    var  butones = await  driver.findElement(By.className('MuiButton-fullWidth'));
+    await driver.wait(until.elementIsEnabled(butones), 150000);
     await  butones.click();
 
 
@@ -149,8 +149,9 @@ function verify2FA (){
       var getButton = await driver.findElement(By.className('PurchaseButton-button_d3bea90e'));
       await driver.executeScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center'})", getButton);
       getButton.click();
-      await driver.wait(until.elementLocated(By.className('btn-primary')), 150000);
-      await driver.findElement(By.className('btn-primary')).click();
+      await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")), 150000);
+      await driver.sleep(1000);
+      await driver.findElement(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")).click();
       await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
 
       account = email + ":" + credentials.password + '\n';
