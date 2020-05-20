@@ -32,6 +32,7 @@ function register(){
 
   try{
     driver = new Builder().forBrowser('chrome').build();
+	var date = new Date(Date.now())
     await driver.get('https://www.epicgames.com/id/register');
     await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
     await   driver.findElement(By.name('name')).sendKeys(credentials.name);
@@ -45,7 +46,7 @@ function register(){
     await  butones.click();
 
 
-    await getEmail();
+    await getEmail(date);
 
     await driver.wait(until.titleIs('Personal Details'), 150000);
     await driver.get('https://www.epicgames.com/account/password');
@@ -53,8 +54,8 @@ function register(){
     await driver.sleep(3000)
     await driver.executeScript('var titi = document.getElementsByClassName("email-auth"); titi[0].click();')
     await driver.wait(until.elementLocated(By.className('inner-container')), 150000);
-
-    await get2faEmail();
+	
+    await get2faEmail(date);
 
 
  } //try block
@@ -78,12 +79,12 @@ function register(){
 
 
 
-function getEmail() {
+function getEmail(date) {
 
   client.messages.search(SERVER_ID, {
     subject: "Epic Games - Email Verification"
   }, {
-    receivedAfter:  new Date(Date.now()),
+    receivedAfter: date,
     itemsPerPage: 200,
     timeout: 60000
   }).then((results) => {
@@ -114,12 +115,12 @@ console.log("Getting Email Verification Code ....");
   })();
 }
 
-function get2faEmail() {
+function get2faEmail(date) {
   console.log("Getting 2FA Email Code .....");
   client.messages.search(SERVER_ID, {
     subject: "Your two-factor sign in code"
   }, {
-   receivedAfter:  new Date(Date.now()),
+   receivedAfter:  date,
     itemsPerPage: 200,
     timeout: 60000
   }).then((results) => {
