@@ -144,7 +144,8 @@ function verify2FA (){
       await driver.findElement(By.className('proceed-btn')).click();
       var donebtn =  await driver.wait(until.elementLocated(By.className('done-btn')), 150000);
       await donebtn.click();
-
+      await driver.get('https://launcher-website-prod07.ol.epicgames.com/purchase?showNavigation=true&namespace=0584d2013f0149a791e7b9bad0eec102&offers=954871df36d3456ca1face43aa5c2e62');
+/*
       await driver.get('https://www.epicgames.com/store/en-US/product/grand-theft-auto-v/home');
       await driver.wait(until.titleIs('Grand Theft Auto V - Grand Theft Auto V: Premium Edition'), 150000);
       await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
@@ -152,7 +153,7 @@ function verify2FA (){
 
       var getButton = await driver.findElement(By.className('PurchaseButton-button_d3bea90e'));
       await driver.executeScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center'})", getButton);
-      getButton.click();
+      getButton.click(); */
       await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")), 150000);
       await driver.sleep(1000);
       await driver.findElement(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")).click();
@@ -160,7 +161,7 @@ function verify2FA (){
 	await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[6]/div[2]/div/div[2]/button[2]")), 2500);	  
 	await driver.findElement(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[6]/div[2]/div/div[2]/button[2]")).click();
 	  } catch (e) { var foo = 'bar'; }
-      await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
+      await driver.wait(until.elementLocated(By.className('receipt-container')), 100000);
 
       account = email + ":" + credentials.password + '\n';
       fs.writeFileSync("accounts.txt", oldacc + account)
