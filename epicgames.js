@@ -156,6 +156,10 @@ function verify2FA (){
       await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")), 150000);
       await driver.sleep(1000);
       await driver.findElement(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")).click();
+      try {
+	await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[6]/div[2]/div/div[2]/button[2]")), 2500);	  
+	await driver.findElement(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[6]/div[2]/div/div[2]/button[2]")).click();
+	  } catch (e) { var foo = 'bar'; }
       await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
 
       account = email + ":" + credentials.password + '\n';
