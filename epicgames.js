@@ -35,9 +35,13 @@ function register(){
 
   try{
     driver = new Builder().forBrowser('chrome').setChromeOptions(options).build();
-	var date = new Date(Date.now())
+	  var date = new Date(Date.now())
     await driver.get('https://www.epicgames.com/id/register');
     await   driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
+
+    if (driver.wait(until.elementLocated(By.id('login-with-epic')), 150000)) {
+      await   driver.findElement(By.id('login-with-epic')).click();
+    }
     await   driver.findElement(By.name('name')).sendKeys(credentials.name);
     await   driver.findElement(By.name('lastName')).sendKeys(credentials.lastName);
     await   driver.findElement(By.name('displayName')).sendKeys(credentials.username + credentials.usernamectr);
@@ -57,7 +61,7 @@ function register(){
     await driver.sleep(3000)
     await driver.executeScript('var titi = document.getElementsByClassName("email-auth"); titi[0].click();')
     await driver.wait(until.elementLocated(By.className('inner-container')), 150000);
-	
+
     await get2faEmail(date);
 
 
