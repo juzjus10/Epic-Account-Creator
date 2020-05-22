@@ -37,3 +37,11 @@ Claims Sid Meiers Civilization Vl - Sid Meier’s Civilization® VI on **Existin
 If you feel generous please consider donating to my BTC account. I will keep updating this script as possibly as I can :) 
 
 > 3NvSf9dDtDSFTTDdTK3LtGXPVunEVGRwaz
+
+# civ6_new_acc.js
+Generates new epic accounts with only Civ VI. Start with `node civ6_new_acc.js`
+
+Check the accounts on civ6_accs_new.txt
+
+Like the above process, a VPN has to be used if you want to claim the game more than 5 times.
+If you do not want to do the CAPTCHAs you can switch VPN
