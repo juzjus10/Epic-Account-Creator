@@ -31,7 +31,7 @@ Claims Sid Meiers Civilization Vl - Sid Meier’s Civilization® VI on **Existin
  Note: 
  
  - Claiming the game for 5 times would still activate the 24 hour cooldown. You still need to use a VPN for this
- - If you think that username/email entered during login screen did not change, increase by 2
+ - If you think that username/email entered during login screen did not change, increase by 2 in credentials.json
 > "accountctr":0
 
 If you feel generous please consider donating to my BTC account. I will keep updating this script as possibly as I can :) 
