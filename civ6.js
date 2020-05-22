@@ -58,7 +58,7 @@ function register(){
     await driver.wait(until.elementIsEnabled(butones), 150000);
     await  butones.click();
 
-    await verify2FA();
+    await get2faEmail(date);
 
 
  } //try block
@@ -76,34 +76,34 @@ function register(){
 
 
 
-// function get2faEmail(date) {
-//   console.log("Getting 2FA Email Code .....");
-//   client.messages.search(SERVER_ID, {
-//     subject: "Your two-factor sign in code"
-//   }, {
-//    receivedAfter:  date,
-//     itemsPerPage: 200,
-//     timeout: 60000
-//   }).then((results) => {
-//   twofaid =  results.items[0].id;
+function get2faEmail(date) {
+  console.log("Getting 2FA Email Code .....");
+  client.messages.search(SERVER_ID, {
+    subject: "Your two-factor sign in code"
+  }, {
+   receivedAfter:  date,
+    itemsPerPage: 200,
+    timeout: 60000
+  }).then((results) => {
+  twofaid =  results.items[0].id;
 
-//  verify2FA();
-// });
-// }
+ verify2FA();
+});
+}
 
 function verify2FA (){
   (async () => {
     try {
-//       let message = await client.messages.getById(twofaid);
-//       const $ = cheerio.load(message.html.body)
-//       var twoFAcode = $('body > table > tbody > tr > td > center > table > tbody > tr > td > table:nth-child(4) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > div').text().trim();
-//       await console.log(twoFAcode);
-//       await driver.findElement(By.name('code')).sendKeys(twoFAcode);
+      let message = await client.messages.getById(twofaid);
+      const $ = cheerio.load(message.html.body)
+      var twoFAcode = $('body > table > tbody > tr > td > center > table > tbody > tr > td > table:nth-child(4) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > div').text().trim();
+      await console.log(twoFAcode);
+      await driver.findElement(By.name('code')).sendKeys(twoFAcode);
 
-//       var continueBtn = await  driver.findElement(By.id('continue'));
-//       await driver.wait(until.elementIsEnabled(continueBtn), 150000);
-//       await continueBtn.click();
-//       await driver.sleep(1000);
+      var continueBtn = await  driver.findElement(By.id('continue'));
+      await driver.wait(until.elementIsEnabled(continueBtn), 150000);
+      await continueBtn.click();
+      await driver.sleep(1000);
       await driver.get('https://www.epicgames.com/store/en-US/product/sid-meiers-civilization-vi/home#');
       //await driver.get('https://www.epicgames.com/store/purchase?namespace=cd14dcaa4f3443f19f7169a980559c62&showNavigation=true&highlightColor=0078f2&offers=fe74b3dad04846e5a58f62aebd3858b6');
       await driver.wait(until.titleIs('Sid Meiers Civilization Vl - Sid Meier’s Civilization® VI'), 5000);
