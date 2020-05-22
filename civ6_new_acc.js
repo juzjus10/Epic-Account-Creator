@@ -21,7 +21,7 @@ register();
 
 function register(){
 
-    oldacc = fs.readFileSync("accounts.txt").toString();
+    oldacc = fs.readFileSync("civ6_accs_new.txt").toString();
     email = credentials.username + credentials.usernamectr + credentials.email;
 
 
@@ -126,11 +126,11 @@ function purchase() {
             await driver.wait(until.elementLocated(By.className('receipt-container')), 100000);
 
             account = email + ":" + credentials.password + '\n';
-            fs.writeFileSync("accounts.txt", oldacc + account)
+            fs.writeFileSync("civ6_accs_new.txt", oldacc + account)
         } catch (e){
             console.log(e);
             account = email + ":" + credentials.password + "(incomplete)\n";
-            fs.writeFileSync("accounts.txt", oldacc + account)
+            fs.writeFileSync("civ6_accs_new.txt", oldacc + account)
         } finally {
             await driver.sleep(1000);
             await driver.manage().deleteAllCookies()
