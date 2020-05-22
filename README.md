@@ -2,6 +2,8 @@
 
 A node.js script that automates claiming of free games in Epic Games Store
 
+**THIS SCRIPT WILL NOT WORK WITH A KOREAN VPN OR IF YOU ARE IN KOREA**
+
 # epicgames.js 
 Automatically creates an account and claims Grand Theft Auto V - Grand Theft Auto V: Premium Edition  
 as of (22/05/2020) this offer has ended and will not work anymore
