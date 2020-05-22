@@ -47,3 +47,5 @@ Check the accounts on civ6_accs_new.txt
 
 Like the above process, a VPN has to be used if you want to claim the game more than 5 times.
 If you do not want to do the CAPTCHAs you can switch VPN
+
+> Bitcoin (for this fork): 12Z7RcZdDVahnPtvkh8BbU3hJSJmjcLpDm
