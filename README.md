@@ -34,6 +34,9 @@ Claims Sid Meiers Civilization Vl - Sid Meier’s Civilization® VI on **Existin
  - If you think that username/email entered during login screen did not change, increase by 2 in credentials.json
 > "accountctr":0
 
+# unlink.js
+Disables 2FA on **Existing Account**
+
 If you feel generous please consider donating to my BTC account. I will keep updating this script as possibly as I can :) 
 
 > 3NvSf9dDtDSFTTDdTK3LtGXPVunEVGRwaz
