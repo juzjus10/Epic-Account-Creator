@@ -21,7 +21,7 @@ register();
 
 function register(){
 
-    oldacc = fs.readFileSync("accounts.txt").toString();
+    oldacc = fs.readFileSync("civ6_new_accounts.txt").toString();
     email = credentials.username + credentials.usernamectr + credentials.email;
 
 
@@ -35,6 +35,7 @@ function register(){
             var butones1 = await  driver.findElement(By.id('login-with-epic'));
             await butones1.click();
             await driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
+            await driver.findElement(By.className('jss205')).sendKeys(credentials.country);
             await driver.findElement(By.name('name')).sendKeys(credentials.name);
             await driver.findElement(By.name('lastName')).sendKeys(credentials.lastName);
             await driver.findElement(By.name('displayName')).sendKeys(credentials.username + credentials.usernamectr);
@@ -44,22 +45,9 @@ function register(){
             var butones = await  driver.findElement(By.className('MuiButton-fullWidth'));
             await driver.wait(until.elementIsEnabled(butones), 150000);
             await butones.click();
-
-
             await getEmail(date);
             await driver.wait(until.titleIs('Personal Details'), 150000);
-            /*
-            await driver.wait(until.titleIs('Personal Details'), 150000);
-            await driver.get('https://www.epicgames.com/account/password');
-            await driver.wait(until.titleIs('Change Your Password'), 150000);
-            await driver.sleep(3000)
-            await driver.executeScript('var titi = document.getElementsByClassName("email-auth"); titi[0].click();')
-            await driver.wait(until.elementLocated(By.className('inner-container')), 150000);
-
-            await get2faEmail(date);
-            */
             await purchase();
-
 
         } catch (e){
             console.log(e);
@@ -105,14 +93,6 @@ function purchase() {
         try {
             // Make purchase
             await driver.get('https://launcher-website-prod07.ol.epicgames.com/purchase?namespace=cd14dcaa4f3443f19f7169a980559c62&showNavigation=true&highlightColor=0078f2&offers=fe74b3dad04846e5a58f62aebd3858b6#/purchase/verify?_k=799uhm');
-            /*
-            await driver.get('https://www.epicgames.com/store/en-US/product/grand-theft-auto-v/home');
-            await driver.wait(until.titleIs('Grand Theft Auto V - Grand Theft Auto V: Premium Edition'), 150000);
-            await driver.wait(until.elementLocated(By.className('Button-dark_c0429b3d')), 150000);
-            await driver.findElement(By.className('Button-dark_c0429b3d')).click();
-            var getButton = await driver.findElement(By.className('PurchaseButton-button_d3bea90e'));
-            await driver.executeScript("arguments[0].scrollIntoView({behavior: 'auto', block: 'center'})", getButton);
-            getButton.click(); */
             await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")), 150000);
             await driver.sleep(1000);
             await driver.findElement(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")).click();
