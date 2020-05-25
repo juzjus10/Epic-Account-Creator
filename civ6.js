@@ -70,6 +70,7 @@ function register() {
       var continueBtn = await driver.findElement(By.id('continue'));
       await driver.wait(until.elementIsEnabled(continueBtn), 150000);
       await continueBtn.click();
+      await driver.wait(until.titleIs('Personal Details'), 150000);
       await driver.sleep(1300);
       await driver.get('https://www.epicgames.com/store/purchase?namespace=cd14dcaa4f3443f19f7169a980559c62&showNavigation=true&highlightColor=0078f2&offers=fe74b3dad04846e5a58f62aebd3858b6');
       await driver.wait(until.elementLocated(By.xpath("//*[@id='purchase-app']/div/div[4]/div[1]/div[2]/div[5]/div/div/button/span")), 150000);
