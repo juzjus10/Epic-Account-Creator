@@ -30,8 +30,8 @@ register();
 
 function register() {
 
-  civ6account = fs.readFileSync("civ6_accounts.txt").toString();
-  oldacc = fs.readFileSync("accounts.txt").toString();
+  civ6account = fs.readFileSync("output/civ6_accounts.txt").toString();
+  oldacc = fs.readFileSync("output/accounts.txt").toString();
   oldacc = oldacc.split(/\s*[\n:]+\s*/);
 
   for (i = credentials.accountctr; i < oldacc.length; i++) {

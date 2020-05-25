@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const api_creds = require("./config/api_credentials");
 const acc_details = require("./config/epic_account_details");
-const tracking = require("./config/tracking");
+const tracking = require("./workspace/new_acc_tracking");
 
 
 let res = '';
@@ -24,7 +24,7 @@ register();
 
 function register(){
 
-    account_file = fs.readFileSync("civ6_new_accounts.txt").toString();
+    account_file = fs.readFileSync("output/civ6_new_accounts.txt").toString();
     email = acc_details.username + tracking.username_ctr + acc_details.email;
 
 
@@ -56,7 +56,7 @@ function register(){
             console.log(e);
         } finally {
             ++tracking.username_ctr;
-            fs.writeFileSync("./config/tracking.json", JSON.stringify(tracking, null, 4));
+            fs.writeFileSync("./workspace/new_acc_tracking.json", JSON.stringify(tracking, null, 4));
         }
     })();
 }
@@ -114,12 +114,12 @@ function purchase() {
             await driver.wait(until.elementLocated(By.className('receipt-container')), 100000);
 
             account = email + ":" + acc_details.password + '\n';
-            fs.writeFileSync("accounts.txt", account_file + account)
+            fs.writeFileSync("civ6_new_accounts.txt", account_file + account)
         } catch (e){
             console.log("Exception thrown while attempting to make purchase");
             console.log(e);
             account = email + ":" + acc_details.password + "(incomplete)\n";
-            fs.writeFileSync("accounts.txt", account_file + account)
+            fs.writeFileSync("civ6_new_accounts.txt", account_file + account)
         } finally {
             await driver.sleep(1000);
             await driver.manage().deleteAllCookies();

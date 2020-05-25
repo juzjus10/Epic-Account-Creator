@@ -2,12 +2,21 @@
 
 A node.js script that automates claiming of free games in Epic Games Store
 
-# epicgames.js 
-Automatically creates an account and claims Grand Theft Auto V - Grand Theft Auto V: Premium Edition  
-as of (22/05/2020) this offer has ended and will not work anymore
+## civ6_new_accs.js
+Claims Civilization VI by creating **new accounts**
+### Usage
+`node civ6_new_accs.js`
 
-# civ6.js 
-Claims Sid Meiers Civilization Vl - Sid Meier’s Civilization® VI on **Existing Account**
+Note:
+- Claiming the game 5 times within 24h will trigger a 24h cooldown period.
+To avoid this, use some kind of proxy or VPN. Please create issues and pull 
+requests to suggest how I can implement a proxy switcher
+- If you believe that the account email and username is not changing,
+you can edit `config/tracking.json` and increase the value of 
+`account_ctr` by 1 or 2
+
+## civ6.js 
+Claims Sid Meiers Civilization Vl- Sid Meier’s Civilization® VI on **Existing Account**
 
  
 
@@ -34,9 +43,10 @@ Claims Sid Meiers Civilization Vl - Sid Meier’s Civilization® VI on **Existin
  - If you think that username/email entered during login screen did not change, increase by 2 in credentials.json
 > "accountctr":0
 
-# unlink.js
+## 2fa_Unlinker/unlink.js
 Disables 2FA on **Existing Account**
 
+## Donations
 If you feel generous please consider donating to my BTC account. I will keep updating this script as possibly as I can :) 
 
 > 3NvSf9dDtDSFTTDdTK3LtGXPVunEVGRwaz
