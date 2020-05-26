@@ -6,7 +6,7 @@ const {
 } = require('selenium-webdriver');
 const chrome = require('selenium-webdriver/chrome');
 const MailosaurClient = require('mailosaur');
-const cheerio = require('cheerio')
+const cheerio = require('cheerio');
 const fs = require('fs');
 
 
@@ -18,8 +18,9 @@ var password;
 var account;
 var civ6account;
 var oldacc;
-var contents = fs.readFileSync("credentials.json").toString()
-var credentials = JSON.parse(contents)
+var contents = fs.readFileSync("config/credentials.json").toString();
+
+var credentials = JSON.parse(contents);
 
 const client = new MailosaurClient(credentials.apikey);
 const SERVER_ID = credentials.serverId;
@@ -29,8 +30,8 @@ register();
 
 function register() {
 
-  civ6account = fs.readFileSync("civ6_accounts.txt").toString();
-  oldacc = fs.readFileSync("accounts.txt").toString();
+  civ6account = fs.readFileSync("output/civ6_accounts.txt").toString();
+  oldacc = fs.readFileSync("output/accounts.txt").toString();
   oldacc = oldacc.split(/\s*[\n:]+\s*/);
 
   for (i = credentials.accountctr; i < oldacc.length; i++) {
@@ -120,10 +121,10 @@ async function verify2FA(date) {
       receivedAfter: date,
       itemsPerPage: 200,
       timeout: 60000
-    })
+    });
     twofaid = await results.items[0].id;
     let message = await client.messages.getById(twofaid);
-    const $ = cheerio.load(message.html.body)
+    const $ = cheerio.load(message.html.body);
     var result = $('body > table > tbody > tr > td > center > table > tbody > tr > td > table:nth-child(4) > tbody > tr > td > table > tbody > tr > td > table > tbody > tr:nth-child(3) > td > div').text().trim();
     return result;
   } catch (e) {

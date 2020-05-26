@@ -1,7 +1,7 @@
 {
   "name": "epic-account-creator",
   "version": "1.0.0",
-  "description": "Automatically Create Account for Epic Games to claim GTA V Premium Edition",
+  "description": "Automatically create Epic Games Accounts to claim free games",
   "main": "epicgames.js",
   "dependencies": {
     "cheerio": "^1.0.0-rc.3",
@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Hi"
+    "start": "node civ6.js"
   },
   "author": "Juzz",
   "license": "ISC"
