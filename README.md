@@ -4,15 +4,15 @@ A node.js script that automates the claiming of
  free games in Epic Games Store
 
 ## Menu
-1. [Create new accounts to claim CIV 6](#civ6_new_accs.js)
-2. [Use existing accounts to claim CIV 6](#civ6.js)
+1. [Create new accounts to claim Borderlands](#borderlands_new_accs.js)
+2. [Use existing accounts to claim Borderlands](#borderlands.js)
 3. [Remove 2FA from existing accounts](#2fa_Unlinker/unlink.js)
 4. [Donations](#Donations)
 
-## civ6_new_accs.js
-Claims Civilization VI by creating **new accounts**
+## borderlands_new_accs.js
+Claims the Borderlands 2 Bundle by creating **new accounts**
 ### Usage
-`node civ6_new_accs.js`
+`node borderlands_new_accs.js`
 
 Note:
 - Claiming the game 5 times within 24h will trigger a 24h cooldown period.
@@ -22,8 +22,8 @@ requests to suggest how I can implement a proxy switcher
 you can edit `workspace/new_acc_tracking.json` and increase the value of 
 `account_ctr` by 1 or 2
 
-## civ6.js 
-Claims Civilization VI on **existing accounts**
+## borderlands.js 
+Claims the Borderlands 2 Bundle on **existing accounts**
 
 ### Usage
  1.  Make sure that the existing accounts are in accounts.txt with this format
@@ -40,8 +40,8 @@ Claims Civilization VI on **existing accounts**
  
  - Run the script
 
-> `node civ6.js` 
- - Check your accounts on **civ6_accounts.txt**
+> `node borderlands.js` 
+ - Check your accounts on **borderlands_accounts.txt**
  
 Note:
 - Claiming the game 5 times within 24h will trigger a 24h cooldown period.
