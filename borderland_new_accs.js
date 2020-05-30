@@ -38,7 +38,7 @@ function register(){
             let loginWithEpicBtn = await  driver.findElement(By.id('login-with-epic'));
             await loginWithEpicBtn.click();
             await driver.wait(until.titleIs('Register for an Epic Games account | Epic Games'), 5000);
-            await driver.findElement(By.className('jss205')).sendKeys(acc_details.country);
+            //wait driver.findElement(By.className('jss205')).sendKeys(acc_details.country);
             await driver.findElement(By.name('name')).sendKeys(acc_details.first_name);
             await driver.findElement(By.name('lastName')).sendKeys(acc_details.last_name);
             await driver.findElement(By.name('displayName')).sendKeys(acc_details.username + tracking.username_ctr);
