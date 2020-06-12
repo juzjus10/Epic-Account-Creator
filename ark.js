@@ -30,7 +30,7 @@ register();
 
 function register() {
 
-  civ6account = fs.readFileSync("output/borderlands_accounts.txt").toString();
+  civ6account = fs.readFileSync("output/ark_accounts.txt").toString();
   oldacc = fs.readFileSync("output/accounts.txt").toString();
   oldacc = oldacc.split(/\s*[\n:]+\s*/);
 
@@ -89,7 +89,7 @@ function register() {
       await driver.wait(until.elementLocated(By.className('receipt-container')), 100000);
 
       account = '\n' + email + ":" + password;
-      fs.writeFileSync("borderlands_accounts.txt", civ6account + account)
+      fs.writeFileSync("ark_accounts.txt", civ6account + account)
 
       credentials.accountctr += 2;
       fs.writeFileSync("credentials.json", JSON.stringify(credentials))
@@ -99,7 +99,7 @@ function register() {
     catch (e) { // catch block
       console.log(e);
       account = email + ":" + password + "(incomplete)\n";
-      fs.writeFileSync("borderlands_accounts.txt", civ6account + account)
+      fs.writeFileSync("ark_accounts.txt", civ6account + account)
     } finally {
       await driver.manage().deleteAllCookies()
       await driver.close();

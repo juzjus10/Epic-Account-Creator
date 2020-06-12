@@ -24,7 +24,7 @@ register();
 
 function register(){
 
-    account_file = fs.readFileSync("output/borderlands_new_accounts.txt").toString();
+    account_file = fs.readFileSync("output/ark_new_accounts.txt").toString();
     email = acc_details.username + tracking.username_ctr + acc_details.email;
 
 
@@ -114,12 +114,12 @@ function purchase() {
             await driver.wait(until.elementLocated(By.className('receipt-container')), 100000);
 
             account = email + ":" + acc_details.password + '\n';
-            fs.writeFileSync("borderlands_new_accounts.txt", account_file + account)
+            fs.writeFileSync("ark_new_accounts.txt", account_file + account)
         } catch (e){
             console.log("Exception thrown while attempting to make purchase");
             console.log(e);
             account = email + ":" + acc_details.password + "(incomplete)\n";
-            fs.writeFileSync("borderlands_new_accounts.txt", account_file + account)
+            fs.writeFileSync("ark_new_accounts.txt", account_file + account)
         } finally {
             await driver.sleep(1000);
             await driver.manage().deleteAllCookies();
