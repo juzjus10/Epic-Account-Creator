@@ -10,9 +10,9 @@ A node.js script that automates the claiming of
 4. [Donations](#Donations)
 
 ## borderlands_new_accs.js
-Claims the Borderlands 2 Bundle by creating **new accounts**
+Claims the STAR WARS™ Battlefront™ II: Celebration Edition by creating **new accounts**
 ### Usage
-`node borderlands_new_accs.js`
+`node starwars_new_accs.js`
 
 Note:
 - Claiming the game 5 times within 24h will trigger a 24h cooldown period.
@@ -22,8 +22,8 @@ requests to suggest how I can implement a proxy switcher
 you can edit `workspace/new_acc_tracking.json` and increase the value of 
 `account_ctr` by 1 or 2
 
-## borderlands.js 
-Claims the Borderlands 2 Bundle on **existing accounts**
+## starwars.js
+Claims the STAR WARS™ Battlefront™ II: Celebration Edition on **existing accounts**
 
 ### Usage
  1.  Make sure that the existing accounts are in accounts.txt with this format
@@ -40,8 +40,8 @@ Claims the Borderlands 2 Bundle on **existing accounts**
  
  - Run the script
 
-> `node borderlands.js` 
- - Check your accounts on **borderlands_accounts.txt**
+> `node starwars.js` 
+ - Check your accounts on **starwars_accounts.txt**
  
 Note:
 - Claiming the game 5 times within 24h will trigger a 24h cooldown period.
