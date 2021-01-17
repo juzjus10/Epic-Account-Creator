@@ -9,7 +9,7 @@ A node.js script that automates the claiming of
 3. [Remove 2FA from existing accounts](#2fa_Unlinker/unlink.js)
 4. [Donations](#Donations)
 
-## borderlands_new_accs.js
+## starwars_new_accs.js
 Claims the STAR WARS™ Battlefront™ II: Celebration Edition by creating **new accounts**
 ### Usage
 `node starwars_new_accs.js`
